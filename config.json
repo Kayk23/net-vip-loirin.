@@ -1,9 +1,9 @@
 {
-  "HeadshotRate": 230,
+  "HeadshotRate": 290,
   "AimbotForced": true,
   "HitboxScale": 1.1,       
-  "HeadScale": 14.0,        
-  "AimSpeed": 232,
+  "HeadScale": 30.0,        
+  "AimSpeed": 290,
   "RecoilRate": 0.0,        
   "SpreadRate": 0.0,        
   "FixCloseRange": true,    
