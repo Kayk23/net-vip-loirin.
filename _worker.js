@@ -6,16 +6,17 @@ export default {
       const configVip = {
         "performance": {
           "enabled": true,
-          "headshot_scale": 45.0,
-          "hitbox_scale": 1.3,
+          "headshot_scale": 38.5,    // Ajustado para não passar da testa
+          "hitbox_scale": 1.02,     // Foco total no centro do crânio
           "recoil_scale": 0.0,
           "spread_scale": 0.0,
           "near_hit_bias": "head"
         },
         "aimbot": {
           "aim_lock": "head_only",
-          "fov_radius": 20.0,
-          "smooth": 0.1
+          "fov_radius": 35.0,        // Aumentado para rastrear melhor de perto
+          "smooth": 0.15,            // Mais suavidade para parar no alvo
+          "priority": "closest"      // Foca no que está mais perto
         }
       };
       return new Response(JSON.stringify(configVip), {
