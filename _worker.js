@@ -1,14 +1,34 @@
 export default {
-  async fetch(request, env) {
-    const userID = 'd342d11e-d424-4583-b36e-524ab1f0afa4';
-    const url = new URL(request.url);
+  async fetch(request) {
     const host = request.headers.get('Host');
 
-    if (url.pathname === `/${userID}`) {
-      return new Response(`vless://${userID}@${host}:443?encryption=none&security=tls&sni=${host}&fp=random&type=ws&host=${host}&path=%2F%3Fed%3D2048#LOIRIN-VIP`, {
-        headers: { 'content-type': 'text/plain; charset=utf-8' },
+    // Intercepta a configuração de física das armas e mira
+    if (host.includes('config.uca.cloud.unity3d.com')) {
+      const xitVip = {
+        "performance": {
+          "enabled": true,
+          "headshot_scale": 15.0,    // Puxa 100% na cabeça
+          "hitbox_scale": 8.5,       // Hitbox gigante pra não errar tiro
+          "recoil_scale": 0.0,       // ZERO RECOIL (A arma não sobe)
+          "spread_scale": 0.0        // ZERO SPREAD (As balas não espalham)
+        },
+        "aimbot": {
+          "aim_lock": "head_only",   // Trava magnética só na cabeça
+          "aim_assist_distance": 500,// Puxa de longe e de perto
+          "fov_radius": 180,         // Puxa o tiro mesmo se não tiver cravado no cara
+          "near_hit_bias": "head"    // Resolve o problema de pegar no peito quando está perto
+        }
+      };
+      return new Response(JSON.stringify(xitVip), {
+        headers: { 'content-type': 'application/json' }
       });
     }
-    return new Response('Servidor Online ', { status: 200 });
-  },
+
+    // Bloqueia detecção da Garena
+    if (host.includes('log') || host.includes('analytics')) {
+      return new Response(null, { status: 403 });
+    }
+
+    return fetch(request);
+  }
 };
