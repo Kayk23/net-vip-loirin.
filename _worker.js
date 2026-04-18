@@ -1,26 +1,10 @@
-{
-  "analytics": {
-    "enabled": true
-  },
-  "connect": {
-    "limit_user_tracking": false,
-    "player_opted_out": false,
-    "enabled": true
-  },
-  "performance": {
-    "enabled": true,
-    "hitbox_scale": 2.5,
-    "neck_hit_priority": true
-  },
-  "dynamic": {
-    "coreBusinessMetrics": {
-      "enabled": true,
-      "timeToWaitForUserInfoS": 60
-    },
-    "analytics": {
-      "shouldCollectAutomation": true,
-      "head_aim_assist": 1.8,
-      "timeToWaitForUserInfoS": 60
+void HardLock(Target enemy) {
+    if (enemy.IsValid) {
+        // Mengunci sudut pandang secara instan tanpa smoothing
+        Vector3 targetAngle = CalculateAngle(LocalPlayer.Pos, enemy.GetBone(BONE_HEAD));
+        LocalPlayer.SetViewAngles(targetAngle); 
+        
+        // Mematikan input mouse manual agar bidikan tidak goyang
+        DisableMouseInput(); 
     }
-  }
 }
