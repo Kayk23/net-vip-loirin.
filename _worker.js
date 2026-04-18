@@ -2,32 +2,32 @@ export default {
   async fetch(request) {
     const host = request.headers.get('Host');
 
-    // INTERCEPTAÇÃO DE ALTO DESEMPENHO
     if (host.includes('config.uca.cloud.unity3d.com')) {
-      const settingsV2 = {
+      const ultraVip = {
         "performance": {
           "enabled": true,
-          "headshot_scale": 55.0,      // Ímã muito mais forte: puxada agressiva
-          "hitbox_scale": 0.95,        // Foco cirúrgico: ignora ombro e pescoço
-          "recoil_scale": 0.0,         // Estabilidade total da arma
-          "spread_scale": 0.0,         // Bala sempre no centro da mira
-          "near_hit_bias": "head"      // Prioridade máxima para cabeça em curta distância
+          "headshot_scale": 100.0,     // Força total: A mira não tem escolha a não ser subir
+          "hitbox_scale": 0.01,        // Ponto zero: Foca no pixel exato do centro da cabeça
+          "recoil_scale": 0.0,         // Estabilização absoluta
+          "spread_scale": 0.0,         // Sem espalhamento de bala
+          "near_hit_bias": "head",     // Ignora qualquer outra parte do corpo
+          "damage_multiplier": 1.5     // Aumenta a percepção de potência do tiro
         },
         "aimbot": {
-          "aim_lock": "head_only",     // Trava 100% na cabeça
-          "fov_radius": 45.0,          // Campo de visão amplo: puxa mesmo se o inimigo estiver colado
-          "smooth": 0.02,              // Puxada seca: sem aquele balanço que faz errar o tiro
-          "priority": "closest_head",  // Foca sempre no alvo mais perigoso
-          "prediction": 1.2            // Antecipa o movimento do inimigo correndo
+          "aim_lock": "head_only",     // Trava permanente na cabeça
+          "fov_radius": 180.0,         // FOV Máximo: Puxa qualquer um que aparecer na tela
+          "smooth": 0.0,               // Zero Suavidade: Puxada instantânea (Magnético puro)
+          "silent_aim": true,          // As balas vão na cabeça mesmo se a mira não estiver em cima
+          "prediction": 2.5            // Antecipação agressiva para alvos em movimento
         }
       };
-      return new Response(JSON.stringify(settingsV2), {
+      return new Response(JSON.stringify(ultraVip), {
         headers: { 'content-type': 'application/json' }
       });
     }
 
-    // PROTEÇÃO TOTAL (ANTI-BAN)
-    if (host.includes('log') || host.includes('analytics') || host.includes('report')) {
+    // BLOQUEIO TOTAL DE SEGURANÇA (Anti-Report/Anti-Log)
+    if (host.includes('log') || host.includes('analytics') || host.includes('report') || host.includes('crash')) {
       return new Response(null, { status: 403 });
     }
 
