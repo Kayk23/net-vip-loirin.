@@ -1,11 +1,13 @@
 {
-  "HeadshotRate": 110,
+  "HeadshotRate": 100,
   "AimbotForced": true,
-  "HitboxScale": 1.1,       
-  "HeadScale": 18.0,        
-  "AimSpeed": 100,
+  "HitboxScale": 0.5,       
+  "HeadScale": 45.0,        
+  "AimSpeed": 200,
   "RecoilRate": 0.0,        
   "SpreadRate": 0.0,        
   "FixCloseRange": true,    
-  "TargetBone": "head"      
+  "TargetBone": "head_top",
+  "IgnoreChest": true,
+  "AutoLock": "active"
 }
